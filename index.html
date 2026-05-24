@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Caisse à Savon – Détailing à Domicile · Métropole Lilloise</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04060f;
+  --bg2:#080d1a;
+  --bg3:#0b1228;
+  --blue:#1a6fff;
+  --blue2:#00c8ff;
+  --text:#e8f0ff;
+  --muted:#5a6a88;
+  --foam:#eaf5ff;
+  --glow:rgba(26,111,255,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-weight:400;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 5%;background:rgba(4,6,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,111,255,.18)}
+.nav-logo{font-family:'Dancing Script',cursive;font-size:1.6rem;color:#fff;text-decoration:none;letter-spacing:1px}
+.nav-logo span{color:var(--blue2)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--blue2)}
+.nav-cta{background:var(--blue);color:#fff;padding:10px 22px;border-radius:50px;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .3s;border:none;cursor:pointer}
+.nav-cta:hover{background:var(--blue2);box-shadow:0 0 20px var(--glow)}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:80px}
+#bubble-canvas{position:absolute;inset:0;z-index:0}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 2rem}
+.hero-tag{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--blue2);margin-bottom:1.2rem;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:.95;margin-bottom:.5rem;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-title .script{font-family:'Dancing Script',cursive;font-size:clamp(3rem,7vw,6.5rem);color:var(--blue2);display:block}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin:1.5rem auto;line-height:1.7;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards;margin-top:2rem}
+.btn-primary{background:var(--blue);color:#fff;padding:14px 32px;border-radius:50px;font-size:.9rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .3s}
+.btn-primary:hover{background:var(--blue2);box-shadow:0 0 30px var(--glow);transform:translateY(-2px)}
+.btn-outline{border:1px solid rgba(26,111,255,.5);color:var(--blue2);padding:14px 32px;border-radius:50px;font-size:.9rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .3s}
+.btn-outline:hover{background:rgba(26,111,255,.12);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;opacity:0;animation:fadeUp .8s 1.2s forwards}
+.scroll-line{width:1px;height:40px;background:linear-gradient(var(--blue),transparent);animation:scrollPulse 2s infinite}
+
+/* SECTIONS COMMON */
+section{padding:100px 5%}
+.section-tag{font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--blue2);margin-bottom:1rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1;margin-bottom:1.5rem}
+.section-title .accent{color:var(--blue)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.revealed{opacity:1;transform:none}
+
+/* SERVICES */
+#services{background:var(--bg2)}
+.services-intro{max-width:600px;margin-bottom:4rem}
+.services-intro p{color:var(--muted);line-height:1.8;font-size:1rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.service-card{background:var(--bg3);border:1px solid rgba(26,111,255,.15);border-radius:16px;padding:2rem 1.5rem;transition:all .4s;cursor:default;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,111,255,.06),transparent);opacity:0;transition:opacity .4s}
+.service-card:hover{border-color:rgba(26,111,255,.5);transform:translateY(-4px)}
+.service-card:hover::before{opacity:1}
+.service-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
+.service-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;margin-bottom:.7rem;color:#fff}
+.service-card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.service-card .badge{display:inline-block;background:rgba(0,200,255,.1);color:var(--blue2);border:1px solid rgba(0,200,255,.25);font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:50px;margin-bottom:.8rem}
+
+/* FORMULAS */
+#formulas{background:var(--bg)}
+.formulas-header{text-align:center;margin-bottom:4rem}
+.formulas-header p{color:var(--muted);font-size:1rem;max-width:500px;margin:0 auto}
+.formulas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1000px;margin:0 auto}
+.formula-card{background:var(--bg2);border:1px solid rgba(26,111,255,.15);border-radius:20px;padding:2.5rem 2rem;position:relative;transition:all .4s}
+.formula-card.featured{border-color:var(--blue);background:linear-gradient(160deg,rgba(26,111,255,.1),var(--bg2))}
+.formula-card.featured::before{content:'RECOMMANDÉ';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:.65rem;letter-spacing:3px;padding:5px 16px;border-radius:50px;font-weight:700}
+.formula-name{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;margin-bottom:.3rem}
+.formula-price{font-size:3.5rem;font-family:'Bebas Neue',sans-serif;color:var(--blue2);line-height:1}
+.formula-price sup{font-size:1.5rem;vertical-align:super}
+.formula-desc{color:var(--muted);font-size:.88rem;line-height:1.7;margin:1rem 0 1.5rem;min-height:80px}
+.formula-features{list-style:none;margin-bottom:2rem}
+.formula-features li{padding:6px 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:.6rem}
+.formula-features li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue2);flex-shrink:0}
+.formula-card .btn-primary{width:100%;text-align:center;display:block;padding:12px}
+
+/* BEFORE AFTER */
+#gallery{background:var(--bg2)}
+.gallery-header{margin-bottom:3rem}
+.ba-card{border-radius:16px;overflow:hidden;border:1px solid rgba(26,111,255,.15);background:var(--bg3)}
+/* BA CAROUSEL */
+.ba-carousel-wrap{position:relative;max-width:560px;margin:0 auto}
+.ba-carousel-inner{overflow:hidden;border-radius:16px}
+.ba-carousel-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.ba-carousel-track .ba-card{min-width:100%;flex-shrink:0;border-radius:16px}
+.ba-nav-btn{position:absolute;top:45%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(26,111,255,.7);border:none;color:#fff;font-size:1.1rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(4px)}
+.ba-nav-btn:hover{background:var(--blue2);box-shadow:0 0 16px var(--glow)}
+.ba-nav-prev{left:-22px}
+.ba-nav-next{right:-22px}
+.ba-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.2rem}
+.ba-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);cursor:pointer;transition:all .3s}
+.ba-dot.active{background:var(--blue2);width:24px;border-radius:4px}
+.ba-slider{position:relative;height:240px;overflow:hidden;cursor:ew-resize;user-select:none}
+.ba-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem}
+.ba-before{background:linear-gradient(135deg,#1a1a2e,#0d1117);width:100%;height:100%;position:absolute;left:0;top:0}
+.ba-after{background:linear-gradient(135deg,#0d2137,#0a1628);width:50%;height:100%;position:absolute;left:0;top:0;border-right:3px solid var(--blue2)}
+.ba-label-before{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.7);color:#999;font-size:.7rem;letter-spacing:2px;padding:4px 10px;border-radius:50px;text-transform:uppercase}
+.ba-label-after{position:absolute;top:12px;left:12px;background:rgba(26,111,255,.3);color:var(--blue2);font-size:.7rem;letter-spacing:2px;padding:4px 10px;border-radius:50px;text-transform:uppercase}
+.ba-icon{font-size:3rem;opacity:.25}
+.ba-coming{color:var(--muted);font-size:.8rem;letter-spacing:2px;text-transform:uppercase}
+.ba-info{padding:1rem 1.5rem}
+.ba-info h4{font-family:'Bebas Neue',sans-serif;letter-spacing:1px;font-size:1.2rem;color:#fff;margin-bottom:.3rem}
+.ba-info p{color:var(--muted);font-size:.82rem}
+.drag-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(26,111,255,.7);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;pointer-events:none}
+
+/* REVIEWS */
+#reviews{background:var(--bg)}
+.reviews-header{text-align:center;margin-bottom:3.5rem}
+.stars{color:#ffb800;letter-spacing:3px;font-size:1.2rem}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
+.review-card{background:var(--bg2);border:1px solid rgba(26,111,255,.12);border-radius:16px;padding:2rem;position:relative;transition:transform .3s}
+.review-card:hover{transform:translateY(-3px)}
+.review-card::before{content:'"';position:absolute;top:1rem;right:1.5rem;font-family:'Dancing Script',cursive;font-size:4rem;color:rgba(26,111,255,.15);line-height:1}
+.reviewer{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.reviewer-avatar{width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0}
+.reviewer-name{font-weight:600;font-size:.95rem}
+.reviewer-car{color:var(--muted);font-size:.8rem;margin-top:2px}
+.review-text{color:rgba(232,240,255,.7);font-size:.9rem;line-height:1.7;font-style:italic}
+.review-stars{margin-top:1rem}
+.review-stars span{color:#ffb800;font-size:.9rem}
+
+/* BOOKING */
+#booking{background:var(--bg2)}
+.booking-container{max-width:720px;margin:0 auto}
+.booking-header{text-align:center;margin-bottom:3rem}
+.progress-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:3rem}
+.step-dot{width:36px;height:36px;border-radius:50%;background:var(--bg3);border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--muted);transition:all .3s;position:relative;z-index:1}
+.step-dot.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 20px var(--glow)}
+.step-dot.done{background:var(--blue2);border-color:var(--blue2);color:var(--bg)}
+.step-line{width:60px;height:2px;background:var(--muted);transition:background .3s}
+.step-line.done{background:var(--blue2)}
+.step-label{position:absolute;bottom:-22px;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;color:var(--muted)}
+.step-dot.active .step-label{color:var(--blue2)}
+.booking-step{display:none}
+.booking-step.active{display:block}
+.form-group{margin-bottom:1.5rem}
+.form-group label{display:block;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg3);border:1px solid rgba(26,111,255,.2);border-radius:10px;color:var(--text);padding:14px 16px;font-size:.95rem;font-family:'Barlow',sans-serif;outline:none;transition:border-color .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+.form-group select option{background:var(--bg3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.vehicle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem}
+.vehicle-btn{background:var(--bg3);border:1px solid rgba(26,111,255,.2);border-radius:12px;padding:1rem .8rem;text-align:center;cursor:pointer;transition:all .3s}
+.vehicle-btn:hover{border-color:var(--blue)}
+.vehicle-btn.selected{border-color:var(--blue2);background:rgba(0,200,255,.08)}
+.vehicle-btn .v-icon{font-size:1.8rem;display:block;margin-bottom:.4rem}
+.vehicle-btn .v-name{font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.vehicle-btn.selected .v-name{color:var(--blue2)}
+.vehicle-btn .v-price-note{font-size:.65rem;color:rgba(0,200,255,.6);margin-top:.2rem}
+.formula-select-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.formula-select-btn{background:var(--bg3);border:1px solid rgba(26,111,255,.2);border-radius:14px;padding:1.5rem 1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative}
+.formula-select-btn:hover{border-color:var(--blue)}
+.formula-select-btn.selected{border-color:var(--blue2);background:rgba(0,200,255,.06)}
+.formula-select-btn.featured-f{border-color:rgba(26,111,255,.4)}
+.fsb-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;margin-bottom:.3rem}
+.fsb-price{color:var(--blue2);font-size:1.5rem;font-family:'Bebas Neue',sans-serif}
+.fsb-desc{color:var(--muted);font-size:.75rem;line-height:1.5;margin-top:.5rem}
+.formula-select-btn.selected .fsb-name{color:#fff}
+.formula-desc-box{background:var(--bg3);border:1px solid rgba(26,111,255,.15);border-radius:12px;padding:1.5rem;margin-top:1.5rem;display:none}
+.formula-desc-box.visible{display:block}
+.formula-desc-box h4{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:1.2rem;margin-bottom:.8rem;color:var(--blue2)}
+.formula-desc-box ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.formula-desc-box li{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.formula-desc-box li::before{content:'✓';color:var(--blue2);font-weight:700;font-size:.8rem}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.option-btn{background:var(--bg3);border:1px solid rgba(26,111,255,.2);border-radius:12px;padding:1rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:.8rem}
+.option-btn:hover{border-color:var(--blue)}
+.option-btn.selected{border-color:var(--blue2);background:rgba(0,200,255,.06)}
+.option-info{flex:1}
+.option-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.option-price{font-size:.75rem;color:var(--blue2);margin-top:.1rem}
+.option-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--muted);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .3s}
+.option-btn.selected .option-check{background:var(--blue2);border-color:var(--blue2);color:var(--bg)}
+.price-summary{background:var(--bg3);border:1px solid rgba(26,111,255,.2);border-radius:14px;padding:1.5rem;margin-top:2rem}
+.price-line{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);padding:.3rem 0}
+.price-total{display:flex;justify-content:space-between;font-size:1.3rem;font-family:'Bebas Neue',sans-serif;color:#fff;letter-spacing:2px;padding-top:.8rem;border-top:1px solid rgba(26,111,255,.2);margin-top:.5rem}
+.price-total span:last-child{color:var(--blue2)}
+.booking-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;gap:1rem}
+.btn-back{background:transparent;border:1px solid rgba(26,111,255,.3);color:var(--muted);padding:12px 24px;border-radius:50px;font-size:.85rem;cursor:pointer;letter-spacing:1px;transition:all .3s;font-family:'Barlow',sans-serif}
+.btn-back:hover{border-color:var(--blue);color:var(--blue)}
+.btn-next{background:var(--blue);color:#fff;padding:12px 32px;border-radius:50px;font-size:.85rem;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;border:none;transition:all .3s;font-family:'Barlow',sans-serif}
+.btn-next:hover{background:var(--blue2);box-shadow:0 0 20px var(--glow)}
+.btn-submit{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:14px 40px;border-radius:50px;font-size:.9rem;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;border:none;transition:all .3s;font-family:'Barlow',sans-serif;width:100%}
+.btn-submit:hover{box-shadow:0 0 30px var(--glow);transform:translateY(-2px)}
+.success-box{display:none;text-align:center;padding:3rem 2rem;background:var(--bg3);border:1px solid rgba(0,200,255,.3);border-radius:20px}
+.success-icon{font-size:3.5rem;margin-bottom:1rem;color:var(--blue2)}
+.success-box h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;margin-bottom:1rem;color:var(--blue2)}
+.success-box p{color:var(--muted);line-height:1.7}
+.recap-box{background:var(--bg3);border:1px solid rgba(26,111,255,.15);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem}
+.recap-item{display:flex;justify-content:space-between;padding:.4rem 0;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.recap-item:last-child{border-bottom:none}
+.recap-item span:first-child{color:var(--muted)}
+.recap-item span:last-child{color:#fff;font-weight:600}
+
+/* MAP */
+#map{background:var(--bg)}
+.map-container{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.map-info h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1;margin-bottom:1rem}
+.map-info p{color:var(--muted);line-height:1.8;margin-bottom:1.5rem}
+.zone-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.zone-tag{background:rgba(26,111,255,.12);border:1px solid rgba(26,111,255,.25);color:var(--blue2);padding:5px 14px;border-radius:50px;font-size:.78rem;letter-spacing:1px}
+.map-iframe-wrap{border-radius:20px;overflow:hidden;border:1px solid rgba(26,111,255,.2);height:400px}
+.map-iframe-wrap iframe{width:100%;height:100%;border:none;filter:invert(.9) hue-rotate(180deg) saturate(1.2) brightness(.75)}
+
+/* CONTACT */
+#contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:900px;margin:0 auto}
+.contact-card{background:var(--bg3);border:1px solid rgba(26,111,255,.15);border-radius:18px;padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1rem;transition:all .3s}
+.contact-card:hover{border-color:rgba(26,111,255,.4);transform:translateX(4px)}
+.contact-icon{width:50px;height:50px;border-radius:12px;background:rgba(26,111,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.contact-text h4{font-weight:700;margin-bottom:.2rem;color:#fff}
+.contact-text a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .3s}
+.contact-text a:hover{color:var(--blue2)}
+.discount-card{background:linear-gradient(135deg,rgba(26,111,255,.15),rgba(0,200,255,.08));border:1px solid rgba(0,200,255,.3);border-radius:18px;padding:2rem;text-align:center;margin-top:2rem}
+.discount-number{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--blue2);line-height:1;text-shadow:0 0 40px rgba(0,200,255,.3)}
+.discount-text{color:var(--muted);font-size:.85rem;line-height:1.6;margin-top:.5rem}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid rgba(26,111,255,.12);padding:3rem 5%;text-align:center}
+.footer-logo{font-family:'Dancing Script',cursive;font-size:2rem;color:#fff;margin-bottom:.5rem}
+.footer-logo span{color:var(--blue2)}
+footer p{color:var(--muted);font-size:.82rem;line-height:1.7}
+footer a{color:var(--blue);text-decoration:none}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes ripple{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
+
+.foam-drip{position:absolute;width:100%;top:0;pointer-events:none;z-index:1;opacity:.25}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .formula-select-grid{grid-template-columns:1fr}
+  .map-container,.contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .options-grid{grid-template-columns:1fr}
+  .formula-desc-box ul{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">La Caisse <span>à Savon</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#formulas">Formules</a></li>
+    <li><a href="#packs">Packs</a></li>
+    <li><a href="#gallery">Avant/Après</a></li>
+    <li><a href="#reviews">Avis</a></li>
+    <li><a href="#pros">Pros</a></li>
+    <li><a href="#map">Zone</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Réserver</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="bubble-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-tag">✦ Détailing professionnel à domicile · Métropole Lilloise ✦</p>
+    <h1 class="hero-title">
+      <span class="script">La Caisse</span>
+      À SAVON
+    </h1>
+    <p class="hero-sub">Votre véhicule mérite le meilleur soin. Nous nous déplaçons chez vous pour un nettoyage en détail haut de gamme — voitures, SUV, motos, bateaux, avions et bien plus encore.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary">Prendre rendez-vous</a>
+      <a href="#formulas" class="btn-outline">Voir les formules</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro reveal">
+    <p class="section-tag">Ce qu'on fait</p>
+    <h2 class="section-title">L'excellence du <span class="accent">nettoyage</span><br>en détail</h2>
+    <p>Voiture, SUV, berline, van, camping-car, moto — mais aussi bateau, avion, canapé en cuir, mobilier… Si ça se salit, on le nettoie. Notre équipe se déplace chez vous avec tout le matériel professionnel pour un nettoyage en détail complet, peu importe la surface. Pas besoin de vous déplacer : on s'occupe de tout.</p>
+  </div>
+</section>
+
+<!-- FORMULAS -->
+<section id="formulas">
+  <div class="formulas-header reveal">
+    <p class="section-tag">Nos Formules</p>
+    <h2 class="section-title">Tarifs <span class="accent">de référence</span></h2>
+    <p>Prix standards pour véhicules classiques — de légers ajustements peuvent s'appliquer selon la taille, l'état ou le type de véhicule. Devis sur mesure pour les bateaux, avions et autres surfaces.</p>
+  </div>
+  <div class="formulas-grid">
+    <div class="formula-card reveal">
+      <div class="formula-name">Extérieur</div>
+      <div class="formula-price"><sup>€</sup>55</div>
+      <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.2);border-radius:50px;padding:3px 12px;font-size:.72rem;color:var(--blue2);letter-spacing:1.5px;margin-bottom:.8rem">⏱ ≈ 45 min</div>
+      <p class="formula-desc">Un lavage complet de la carrosserie avec mousse active, dégraissage, rinçage et finition.</p>
+      <ul class="formula-features">
+        <li>Mousse active haute pression</li>
+        <li>Dégraissage jantes</li>
+        <li>Nettoyage vitres extérieures</li>
+        <li>Rinçage haute pression</li>
+        <li>Séchage et essuyage</li>
+      </ul>
+      <a href="#booking" class="btn-primary">Choisir cette formule</a>
+    </div>
+    <div class="formula-card featured reveal">
+      <div class="formula-name">Complète</div>
+      <div class="formula-price"><sup>€</sup>99</div>
+      <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.2);border-radius:50px;padding:3px 12px;font-size:.72rem;color:var(--blue2);letter-spacing:1.5px;margin-bottom:.8rem">⏱ ≈ 2h</div>
+      <p class="formula-desc">La formule tout-en-un : extérieur + intérieur pour un véhicule entièrement neuf.</p>
+      <ul class="formula-features">
+        <li>Formule Extérieur complète</li>
+        <li>Formule Intérieur complète</li>
+        <li>Économie de 21€</li>
+      </ul>
+      <a href="#booking" class="btn-primary">Choisir cette formule</a>
+    </div>
+    <div class="formula-card reveal">
+      <div class="formula-name">Intérieur</div>
+      <div class="formula-price"><sup>€</sup>65</div>
+      <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.2);border-radius:50px;padding:3px 12px;font-size:.72rem;color:var(--blue2);letter-spacing:1.5px;margin-bottom:.8rem">⏱ ≈ 1h15</div>
+      <p class="formula-desc">Un nettoyage soigné de tout l'habitacle pour retrouver un intérieur comme neuf.</p>
+      <ul class="formula-features">
+        <li>Aspiration complète</li>
+        <li>Tableau de bord</li>
+        <li>Plastiques & vinyls</li>
+        <li>Vitres intérieures</li>
+        <li>Sols et coffre</li>
+      </ul>
+      <a href="#booking" class="btn-primary">Choisir cette formule</a>
+    </div>
+  </div>
+</section>
+
+<!-- PACKS & ABONNEMENTS -->
+<section id="packs" style="background:var(--bg2)">
+  <div class="formulas-header reveal">
+    <p class="section-tag">Engagements & Fidélité</p>
+    <h2 class="section-title">Pack & <span class="accent">Abonnement</span></h2>
+    <p>Clients abonnés et détenteurs d'un pack sont traités en <strong style="color:var(--blue2)">priorité absolue</strong> sur les disponibilités.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:800px;margin:0 auto">
+
+    <div class="formula-card featured reveal" style="position:relative">
+      <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:.65rem;letter-spacing:3px;padding:5px 16px;border-radius:50px;font-weight:700;white-space:nowrap">⚡ PRIORITÉ + ÉCONOMIE</div>
+      <div class="formula-name">Pack 10 prestations</div>
+      <div class="formula-price"><sup>€</sup>817</div>
+      <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.2);border-radius:50px;padding:3px 12px;font-size:.72rem;color:var(--blue2);letter-spacing:1.5px;margin-bottom:.8rem">💰 Économie de 173€</div>
+      <p class="formula-desc">10 formules complètes à utiliser à votre rythme. Valables sur plusieurs véhicules différents.</p>
+      <ul class="formula-features">
+        <li>10 × Formule Complète (99€)</li>
+        <li>Utilisable sur différents véhicules</li>
+        <li>Valable 2 ans maximum</li>
+        <li>Prise en charge prioritaire</li>
+        <li>Économie de 17% vs tarif normal</li>
+      </ul>
+      <a href="mailto:lacaisseasavon@outlook.fr?subject=Demande%20Pack%2010%20prestations&body=Bonjour%2C%20je%20souhaite%20souscrire%20au%20Pack%2010%20prestations." class="btn-primary" style="display:block;text-align:center">Souscrire au pack</a>
+    </div>
+
+    <div class="formula-card reveal" style="border-color:rgba(0,200,255,.3)">
+      <div class="formula-name" style="color:var(--blue2)">Abonnement Annuel</div>
+      <div class="formula-price"><sup>€</sup>917</div>
+      <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.2);border-radius:50px;padding:3px 12px;font-size:.72rem;color:var(--blue2);letter-spacing:1.5px;margin-bottom:.8rem">📅 1 nettoyage / mois</div>
+      <p class="formula-desc">Un nettoyage complet chaque mois pendant 12 mois. Votre véhicule toujours impeccable, sans y penser.</p>
+      <ul class="formula-features">
+        <li>12 × Formule Complète incluse</li>
+        <li>1 intervention par mois</li>
+        <li>Planification flexible</li>
+        <li>Prise en charge prioritaire</li>
+        <li>Économie de 271€ vs tarif normal</li>
+      </ul>
+      <a href="mailto:lacaisseasavon@outlook.fr?subject=Demande%20Abonnement%20Annuel&body=Bonjour%2C%20je%20souhaite%20souscrire%20%C3%A0%20l%27abonnement%20annuel." class="btn-primary" style="display:block;text-align:center">Souscrire à l'abonnement</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROFESSIONNELS -->
+<section id="pros" style="background:var(--bg)">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1000px;margin:0 auto" class="map-container">
+    <div class="reveal">
+      <p class="section-tag">B2B</p>
+      <h2 class="section-title">Vous êtes <span class="accent">professionnel</span> ?</h2>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:1.5rem">Loueurs de véhicules, concessions automobiles, flottes d'entreprise, marinas, aéro-clubs… Nous proposons des tarifs et des modalités adaptés aux professionnels qui ont besoin d'un entretien régulier et fiable.</p>
+      <ul style="list-style:none;margin-bottom:2rem">
+        <li style="color:var(--muted);font-size:.95rem;padding:.4rem 0;display:flex;align-items:center;gap:.7rem"><span style="color:var(--blue2);font-weight:700">→</span> Tarifs dégressifs selon volume</li>
+        <li style="color:var(--muted);font-size:.95rem;padding:.4rem 0;display:flex;align-items:center;gap:.7rem"><span style="color:var(--blue2);font-weight:700">→</span> Contrats d'entretien sur mesure</li>
+        <li style="color:var(--muted);font-size:.95rem;padding:.4rem 0;display:flex;align-items:center;gap:.7rem"><span style="color:var(--blue2);font-weight:700">→</span> Interventions planifiées & prioritaires</li>
+        <li style="color:var(--muted);font-size:.95rem;padding:.4rem 0;display:flex;align-items:center;gap:.7rem"><span style="color:var(--blue2);font-weight:700">→</span> Facturation professionnelle</li>
+      </ul>
+      <a href="mailto:lacaisseasavon@outlook.fr?subject=Demande%20partenariat%20professionnel&body=Bonjour%2C%20je%20souhaite%20discuter%20d%27un%20partenariat%20professionnel%20avec%20La%20Caisse%20%C3%A0%20Savon." class="btn-primary">Nous contacter pour un devis</a>
+    </div>
+    <div class="reveal">
+      <div style="background:var(--bg2);border:1px solid rgba(26,111,255,.2);border-radius:20px;padding:2.5rem;display:flex;flex-direction:column;gap:1.2rem">
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border-radius:12px;border:1px solid rgba(26,111,255,.12)">
+          <span style="font-size:2rem">🚗</span>
+          <div><div style="font-weight:700;color:#fff;font-size:.95rem">Loueurs & Concessions</div><div style="color:var(--muted);font-size:.82rem">Remise en état entre locations, véhicules de démonstration</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border-radius:12px;border:1px solid rgba(26,111,255,.12)">
+          <span style="font-size:2rem">🛥️</span>
+          <div><div style="font-weight:700;color:#fff;font-size:.95rem">Marinas & Clubs Nautiques</div><div style="color:var(--muted);font-size:.82rem">Entretien régulier de flottes de bateaux</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border-radius:12px;border:1px solid rgba(26,111,255,.12)">
+          <span style="font-size:2rem">✈️</span>
+          <div><div style="font-weight:700;color:#fff;font-size:.95rem">Aéro-clubs & Aviation Privée</div><div style="color:var(--muted);font-size:.82rem">Nettoyage cabines, carlingues, intérieurs privatifs</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border-radius:12px;border:1px solid rgba(26,111,255,.12)">
+          <span style="font-size:2rem">🏢</span>
+          <div><div style="font-weight:700;color:#fff;font-size:.95rem">Flottes d'entreprise</div><div style="color:var(--muted);font-size:.82rem">Contrat d'entretien mensuel pour vos véhicules de fonction</div></div>
+        </div>
+        <p style="color:var(--blue2);font-size:.78rem;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-top:.5rem">Tarifs sur devis · Contactez-nous</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <p class="section-tag">Galerie</p>
+    <h2 class="section-title">Avant <span class="accent">/ Après</span></h2>
+    <p style="color:var(--muted);margin-bottom:2rem;max-width:500px">Glissez pour comparer. Les photos arrivent bientôt — en attendant, réservez et devenez notre prochaine réalisation !</p>
+  </div>
+  <div class="ba-carousel-wrap reveal">
+    <div class="ba-carousel-inner">
+      <div class="ba-carousel-track" id="ba-track">
+        <!-- SLIDE 1 -->
+        <div class="ba-card">
+          <div class="ba-slider" id="ba1">
+            <div class="ba-before"><div class="ba-placeholder" style="z-index:1"><div class="ba-icon">🏎️</div><div class="ba-coming">Photo bientôt disponible</div></div></div>
+            <div class="ba-after" id="ba1-after"><div class="ba-placeholder" style="z-index:2"><div class="ba-icon">✨</div></div></div>
+            <div class="ba-label-before">Avant</div>
+            <div class="ba-label-after">Après</div>
+            <div class="drag-hint">↔</div>
+          </div>
+          <div class="ba-info"><h4>Voiture de sport — Formule Complète</h4><p>Intérieur + extérieur — résultat showroom garanti</p></div>
+        </div>
+        <!-- SLIDE 2 -->
+        <div class="ba-card">
+          <div class="ba-slider" id="ba2">
+            <div class="ba-before"><div class="ba-placeholder" style="z-index:1"><div class="ba-icon">🚗</div><div class="ba-coming">Photo bientôt disponible</div></div></div>
+            <div class="ba-after" id="ba2-after"><div class="ba-placeholder" style="z-index:2"><div class="ba-icon">✨</div></div></div>
+            <div class="ba-label-before">Avant</div>
+            <div class="ba-label-after">Après</div>
+            <div class="drag-hint">↔</div>
+          </div>
+          <div class="ba-info"><h4>Citadine — Formule Intérieur</h4><p>Aspiration, plastiques, vitres, sols — habitacle comme neuf</p></div>
+        </div>
+      </div>
+    </div>
+    <button class="ba-nav-btn ba-nav-prev" onclick="baMove(-1)">&#8592;</button>
+    <button class="ba-nav-btn ba-nav-next" onclick="baMove(1)">&#8594;</button>
+    <div class="ba-dots" id="ba-dots">
+      <div class="ba-dot active" onclick="baGoTo(0)"></div>
+      <div class="ba-dot" onclick="baGoTo(1)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header reveal">
+    <p class="section-tag">Ce qu'ils disent</p>
+    <h2 class="section-title">Avis <span class="accent">Clients</span></h2>
+    <div class="stars">★★★★★</div>
+    <p style="color:var(--muted);margin-top:.5rem;font-size:.9rem">5/5 · Clients satisfaits</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="reviewer">
+        <div class="reviewer-avatar">TM</div>
+        <div>
+          <div class="reviewer-name">Thomas M.</div>
+          <div class="reviewer-car">Tesla Model 3 · Formule complète</div>
+        </div>
+      </div>
+      <p class="review-text">Franchement bluffé par le résultat. Ils sont venus directement chez moi, ponctuels, pro, et ma Tesla était méconnaissable en sortant. L'intérieur sentait le neuf et la carrosserie brillait comme jamais. Je recommande les yeux fermés !</p>
+      <div class="review-stars"><span>★★★★★</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#0f6e56">SL</div>
+        <div>
+          <div class="reviewer-name">Sarah L.</div>
+          <div class="reviewer-car">BMW X5 · Formule intérieur</div>
+        </div>
+      </div>
+      <p class="review-text">J'ai deux chiens et l'intérieur de mon X5 était dans un état... disons, catastrophique. Ils ont tout enlevé, les poils, les odeurs, les taches. Résultat impeccable ! Le rapport qualité-prix est excellent pour un service à domicile.</p>
+      <div class="review-stars"><span>★★★★★</span></div>
+    </div>
+    <!-- HIDDEN REVIEWS -->
+    <div class="review-card reveal hidden-review" style="display:none">
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#993c1d">KC</div>
+        <div>
+          <div class="reviewer-name">Kévin C.</div>
+          <div class="reviewer-car">Porsche 911 · Formule extérieur</div>
+        </div>
+      </div>
+      <p class="review-text">Je suis très exigeant avec ma 911, j'ai hésité avant d'y laisser quelqu'un d'autre la toucher. Vraiment rassuré par leur sérieux et leurs produits. La peinture est sortie comme un miroir, sans la moindre trace. Bravo !</p>
+      <div class="review-stars"><span>★★★★★</span></div>
+    </div>
+    <div class="review-card reveal hidden-review" style="display:none">
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#533c17">AR</div>
+        <div>
+          <div class="reviewer-name">Aurélie R.</div>
+          <div class="reviewer-car">Canapé en cuir · Traitement</div>
+        </div>
+      </div>
+      <p class="review-text">Je ne savais pas qu'ils faisaient aussi le mobilier ! Mon canapé Roche Bobois avait bien vécu... Résultat incroyable, le cuir a retrouvé sa souplesse et sa couleur d'origine. Service rapide et très propre.</p>
+      <div class="review-stars"><span>★★★★★</span></div>
+    </div>
+    <div class="review-card reveal hidden-review" style="display:none">
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#185fa5">MD</div>
+        <div>
+          <div class="reviewer-name">Marc D.</div>
+          <div class="reviewer-car">Range Rover · Formule complète</div>
+        </div>
+      </div>
+      <p class="review-text">Service impeccable du début à la fin. Réservation simple, ponctualité, qualité du travail — tout est au top. Mon Range Rover est sorti de là comme neuf. Très bon contact, je reviendrai sans hésiter.</p>
+      <div class="review-stars"><span>★★★★★</span></div>
+    </div>
+    <div class="review-card reveal hidden-review" style="display:none">
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#3b6d11">JF</div>
+        <div>
+          <div class="reviewer-name">Jean-François P.</div>
+          <div class="reviewer-car">Bateau 10m · Nettoyage complet</div>
+        </div>
+      </div>
+      <p class="review-text">Je ne pensais pas trouver un service de détailing pour mon bateau dans la région lilloise. Ils se sont déplacés jusqu'à la marina sans problème. Coque, cockpit, selleries — tout est nickel. Très pro !</p>
+      <div class="review-stars"><span>★★★★★</span></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem">
+    <button class="btn-outline" id="show-more-reviews" onclick="showMoreReviews()" style="cursor:pointer;border:none;background:transparent;font-family:'Barlow',sans-serif">Voir plus d'avis ↓</button>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="booking-container">
+    <div class="booking-header reveal">
+      <p class="section-tag">Réservation</p>
+      <h2 class="section-title">Prendre <span class="accent">rendez-vous</span></h2>
+      <p style="color:var(--muted)">Réservez en 3 minutes. Nous vous recontactons pour confirmer la date.</p>
+    </div>
+
+    <div class="progress-bar reveal" id="progress-bar">
+      <div class="step-dot active" id="dot1">1<span class="step-label">Véhicule</span></div>
+      <div class="step-line" id="line1"></div>
+      <div class="step-dot" id="dot2">2<span class="step-label">Formule</span></div>
+      <div class="step-line" id="line2"></div>
+      <div class="step-dot" id="dot3">3<span class="step-label">Options</span></div>
+      <div class="step-line" id="line3"></div>
+      <div class="step-dot" id="dot4">4<span class="step-label">Coordonnées</span></div>
+      <div class="step-line" id="line4"></div>
+      <div class="step-dot" id="dot5">5<span class="step-label">Récap</span></div>
+    </div>
+
+    <div id="booking-form">
+      <!-- STEP 1: VEHICLE -->
+      <div class="booking-step active" id="step1">
+        <div class="form-group" style="margin-top:1rem">
+          <label>Type de véhicule</label>
+          <div class="vehicle-grid" id="vehicle-grid">
+            <div class="vehicle-btn" data-type="coupe" data-label="Voiture de sport / Coupé / Cabriolet" data-surcharge="0" data-devis="false">
+              <span class="v-icon">🏎️</span>
+              <div class="v-name">Sport / Coupé</div>
+              <div class="v-price-note">Prix standard</div>
+            </div>
+            <div class="vehicle-btn" data-type="citadine" data-label="Citadine / Compacte" data-surcharge="0" data-devis="false">
+              <span class="v-icon">🚗</span>
+              <div class="v-name">Citadine</div>
+              <div class="v-price-note">Prix standard</div>
+            </div>
+            <div class="vehicle-btn" data-type="berline" data-label="Berline / Break" data-surcharge="0" data-devis="false">
+              <span class="v-icon">🚙</span>
+              <div class="v-name">Berline / Break</div>
+              <div class="v-price-note">Prix standard</div>
+            </div>
+            <div class="vehicle-btn" data-type="suv" data-label="SUV / 4×4" data-surcharge="10" data-devis="false">
+              <span class="v-icon">🛻</span>
+              <div class="v-name">SUV / 4×4</div>
+              <div class="v-price-note">+10€</div>
+            </div>
+            <div class="vehicle-btn" data-type="van" data-label="Monospace / Van" data-surcharge="0" data-devis="true">
+              <span class="v-icon">🚐</span>
+              <div class="v-name">Van / Monospace</div>
+              <div class="v-price-note">Sur devis</div>
+            </div>
+            <div class="vehicle-btn" data-type="moto" data-label="Moto / Scooter" data-surcharge="-20" data-devis="false">
+              <span class="v-icon">🏍️</span>
+              <div class="v-name">Moto / Scooter</div>
+              <div class="v-price-note">-20€</div>
+            </div>
+            <div class="vehicle-btn" data-type="bateau" data-label="Bateau" data-surcharge="0" data-devis="true">
+              <span class="v-icon">🛥️</span>
+              <div class="v-name">Bateau</div>
+              <div class="v-price-note">Sur devis</div>
+            </div>
+            <div class="vehicle-btn" data-type="avion" data-label="Avion" data-surcharge="0" data-devis="true">
+              <span class="v-icon">✈️</span>
+              <div class="v-name">Avion</div>
+              <div class="v-price-note">Sur devis</div>
+            </div>
+            <div class="vehicle-btn" data-type="canape" data-label="Canapé / Mobilier" data-surcharge="0" data-devis="true">
+              <span class="v-icon">🛋️</span>
+              <div class="v-name">Canapé / Mobilier</div>
+              <div class="v-price-note">Sur devis</div>
+            </div>
+            <div class="vehicle-btn" data-type="autre" data-label="Autre" data-surcharge="0" data-devis="true">
+              <span class="v-icon">🔧</span>
+              <div class="v-name">Autre</div>
+              <div class="v-price-note">Sur devis</div>
+            </div>
+          </div>
+        </div>
+        <div class="booking-nav">
+          <span></span>
+          <button class="btn-next" onclick="goToStep(2)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: FORMULA -->
+      <div class="booking-step" id="step2">
+        <div class="form-group" style="margin-top:1rem">
+          <label>Choisissez votre formule</label>
+          <div class="formula-select-grid" id="formula-grid">
+            <div class="formula-select-btn" data-formula="ext" data-price="55" data-label="Extérieur" onclick="selectFormula(this)">
+              <div class="fsb-name">Extérieur</div>
+              <div class="fsb-price">55€</div>
+              <div class="fsb-desc">Carrosserie, jantes, vitres ext.</div>
+              <div style="font-size:.68rem;color:rgba(0,200,255,.7);margin-top:.4rem">⏱ ≈ 45 min</div>
+            </div>
+            <div class="formula-select-btn featured-f" data-formula="comp" data-price="99" data-label="Formule Complète" onclick="selectFormula(this)">
+              <div style="font-size:.6rem;letter-spacing:2px;color:var(--blue2);margin-bottom:.3rem">★ RECOMMANDÉ</div>
+              <div class="fsb-name">Complète</div>
+              <div class="fsb-price">99€</div>
+              <div class="fsb-desc">Ext. + Int. tout inclus</div>
+              <div style="font-size:.68rem;color:rgba(0,200,255,.7);margin-top:.4rem">⏱ ≈ 2h</div>
+            </div>
+            <div class="formula-select-btn" data-formula="int" data-price="65" data-label="Intérieur" onclick="selectFormula(this)">
+              <div class="fsb-name">Intérieur</div>
+              <div class="fsb-price">65€</div>
+              <div class="fsb-desc">Habitacle complet</div>
+              <div style="font-size:.68rem;color:rgba(0,200,255,.7);margin-top:.4rem">⏱ ≈ 1h15</div>
+            </div>
+          </div>
+          <div class="formula-desc-box" id="formula-desc-box">
+            <h4 id="fdesc-title"></h4>
+            <ul id="fdesc-list"></ul>
+          </div>
+        </div>
+        <div class="booking-nav">
+          <button class="btn-back" onclick="goToStep(1)">← Retour</button>
+          <button class="btn-next" onclick="goToStep(3)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: OPTIONS -->
+      <div class="booking-step" id="step3">
+        <div class="form-group" style="margin-top:1rem">
+          <label>Options supplémentaires <span style="color:var(--muted);font-size:.7rem;letter-spacing:1px">(facultatif)</span></label>
+          <div class="options-grid" id="options-grid"></div>
+        </div>
+        <div class="price-summary" id="price-summary">
+          <div class="price-line" id="price-base-line">
+            <span>Formule</span><span id="price-base-val">—</span>
+          </div>
+          <div class="price-line" id="price-vehicle-line" style="display:none">
+            <span>Supplément véhicule</span><span id="price-vehicle-val">—</span>
+          </div>
+          <div id="price-options-lines"></div>
+          <div class="price-total">
+            <span>Total estimé</span>
+            <span id="price-total-val">—</span>
+          </div>
+        </div>
+        <div class="booking-nav">
+          <button class="btn-back" onclick="goToStep(2)">← Retour</button>
+          <button class="btn-next" onclick="goToStep(4)">Continuer →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: CONTACT -->
+      <div class="booking-step" id="step4">
+        <div class="form-group" style="margin-top:1rem">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" id="inp-prenom" placeholder="Jean">
+            </div>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" id="inp-nom" placeholder="Dupont">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" id="inp-tel" placeholder="06 12 34 56 78">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="inp-email" placeholder="jean.dupont@email.fr">
+          </div>
+          <div class="form-group">
+            <label>Adresse de la prestation</label>
+            <input type="text" id="inp-adresse" placeholder="10 rue de la Paix, 59000 Lille">
+          </div>
+          <div class="form-group">
+            <label>Disponibilités souhaitées</label>
+            <input type="text" id="inp-dispo" placeholder="Ex: semaine, matin, week-end...">
+          </div>
+          <div class="form-group">
+            <label>Message ou informations complémentaires</label>
+            <textarea id="inp-message" rows="3" placeholder="Marque/modèle du véhicule, particularités..."></textarea>
+          </div>
+        </div>
+        <div class="booking-nav">
+          <button class="btn-back" onclick="goToStep(3)">← Retour</button>
+          <button class="btn-next" onclick="goToStep(5)">Voir le récapitulatif →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: RECAP -->
+      <div class="booking-step" id="step5">
+        <p style="color:var(--muted);font-size:.88rem;margin:1rem 0 1.5rem">Vérifiez vos informations avant d'envoyer.</p>
+        <div class="recap-box">
+          <div class="recap-item"><span>Véhicule</span><span id="recap-vehicle">—</span></div>
+          <div class="recap-item"><span>Formule</span><span id="recap-formula">—</span></div>
+          <div class="recap-item"><span>Options</span><span id="recap-options">—</span></div>
+          <div class="recap-item"><span>Nom</span><span id="recap-nom">—</span></div>
+          <div class="recap-item"><span>Téléphone</span><span id="recap-tel">—</span></div>
+          <div class="recap-item"><span>Email</span><span id="recap-email">—</span></div>
+          <div class="recap-item"><span>Adresse</span><span id="recap-adresse">—</span></div>
+          <div class="recap-item"><span>Disponibilités</span><span id="recap-dispo">—</span></div>
+          <div class="recap-item" style="font-size:1.1rem;font-weight:700"><span style="color:var(--muted)">Total estimé</span><span id="recap-total" style="color:var(--blue2)">—</span></div>
+        </div>
+        <button class="btn-submit" onclick="submitBooking()">✉ Envoyer la réservation</button>
+        <div class="booking-nav" style="margin-top:1rem">
+          <button class="btn-back" onclick="goToStep(4)">← Modifier</button>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-box" id="success-box">
+      <div class="success-icon">✅</div>
+      <h3>Réservation envoyée !</h3>
+      <p>Votre demande a bien été transmise à notre équipe via votre messagerie.<br><br>
+      Nous vous recontacterons dans les plus brefs délais pour confirmer la date et l'heure du rendez-vous.<br><br>
+      Merci pour votre confiance — <strong>La Caisse à Savon</strong> ✨</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map">
+  <div class="map-container">
+    <div class="map-info reveal">
+      <p class="section-tag">Notre zone</p>
+      <h2>Métropole <span style="color:var(--blue)">Lilloise</span></h2>
+      <p>Nous intervenons dans toute la métropole lilloise et ses alentours. Vous habitez en dehors ? Contactez-nous, on s'arrange !</p>
+      <div class="zone-tags">
+        <span class="zone-tag">Bondues</span>
+        <span class="zone-tag">Mouvaux</span>
+        <span class="zone-tag">Tourcoing</span>
+        <span class="zone-tag">Marcq-en-Barœul</span>
+        <span class="zone-tag">Roubaix</span>
+        <span class="zone-tag">Croix</span>
+        <span class="zone-tag">Hem</span>
+        <span class="zone-tag">Roncq</span>
+        <span class="zone-tag">Lille</span>
+        <span class="zone-tag">Villeneuve d'Ascq</span>
+        <span class="zone-tag">La Madeleine</span>
+        <span class="zone-tag">Et plus...</span>
+      </div>
+      <a href="#booking" class="btn-primary">Réserver maintenant</a>
+    </div>
+    <div class="map-iframe-wrap reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30000!2d3.082!3d50.688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1700000000001!5m2!1sfr!2sfr"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Métropole Lilloise">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="text-align:center;margin-bottom:3rem" class="reveal">
+    <p class="section-tag">Nous contacter</p>
+    <h2 class="section-title">On est <span class="accent">disponibles</span></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-text">
+          <h4>Téléphone</h4>
+          <a href="tel:0781659527">07 81 65 95 27</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-text">
+          <h4>Email</h4>
+          <a href="mailto:lacaisseasavon@outlook.fr">lacaisseasavon@outlook.fr</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div class="contact-text">
+          <h4>Zone d'intervention</h4>
+          <a>Métropole Lilloise & environs</a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div style="margin-top:1.5rem;background:var(--bg3);border-radius:14px;padding:1.5rem;border:1px solid rgba(26,111,255,.12)">
+        <p style="color:var(--muted);font-size:.88rem;line-height:1.8"><strong style="color:#fff">Horaires :</strong> Lundi – Dimanche, 8h00 – 19h00<br>
+        <strong style="color:#fff">Intervention :</strong> Selon disponibilités, souvent sous 48h<br>
+        <strong style="color:#fff">Déplacement :</strong> Gratuit dans la métropole</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">La Caisse <span>à Savon</span></div>
+  <p style="margin-top:.5rem">Détailing professionnel à domicile · Métropole Lilloise<br>
+  <a href="tel:0781659527">07 81 65 95 27</a> · <a href="mailto:lacaisseasavon@outlook.fr">lacaisseasavon@outlook.fr</a></p>
+  <p style="margin-top:1.5rem;color:rgba(90,106,136,.5);font-size:.75rem">© 2025 La Caisse à Savon — Tous droits réservés</p>
+</footer>
+
+<script>
+/* BUBBLES CANVAS */
+const canvas=document.getElementById('bubble-canvas');
+const ctx=canvas.getContext('2d');
+let bubbles=[];
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',()=>{resize();initBubbles()});
+
+function initBubbles(){
+  bubbles=[];
+  const count=Math.floor(canvas.width/20);
+  for(let i=0;i<count;i++){
+    bubbles.push({
+      x:Math.random()*canvas.width,
+      y:canvas.height+Math.random()*canvas.height,
+      r:Math.random()*18+3,
+      speed:Math.random()*0.6+0.2,
+      opacity:Math.random()*0.15+0.03,
+      wobble:Math.random()*Math.PI*2,
+      wobbleSpeed:Math.random()*0.02+0.005
+    })
+  }
+}
+initBubbles();
+
+function animateBubbles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  bubbles.forEach(b=>{
+    b.y-=b.speed;
+    b.wobble+=b.wobbleSpeed;
+    const x=b.x+Math.sin(b.wobble)*15;
+    if(b.y+b.r<-10){b.y=canvas.height+b.r;b.x=Math.random()*canvas.width}
+    ctx.beginPath();
+    ctx.arc(x,b.y,b.r,0,Math.PI*2);
+    const gradient=ctx.createRadialGradient(x-b.r*.3,b.y-b.r*.3,b.r*.1,x,b.y,b.r);
+    gradient.addColorStop(0,`rgba(0,200,255,${b.opacity*2})`);
+    gradient.addColorStop(1,`rgba(26,111,255,${b.opacity})`);
+    ctx.fillStyle=gradient;
+    ctx.fill();
+    ctx.strokeStyle=`rgba(100,180,255,${b.opacity*1.5})`;
+    ctx.lineWidth=.5;
+    ctx.stroke();
+  });
+  requestAnimationFrame(animateBubbles);
+}
+animateBubbles();
+
+/* SCROLL REVEAL */
+const revealEls=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed')}});
+},{threshold:.1});
+revealEls.forEach(el=>observer.observe(el));
+
+/* BA CAROUSEL */
+let baIndex=0;
+const baTotal=2;
+function baMove(dir){baGoTo((baIndex+dir+baTotal)%baTotal)}
+function baGoTo(i){
+  baIndex=i;
+  document.getElementById('ba-track').style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.ba-dot').forEach((d,idx)=>d.classList.toggle('active',idx===i));
+}
+
+/* BA SLIDERS */
+['ba1','ba2'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el)return;
+  const after=document.getElementById(id+'-after');
+  let dragging=false;
+  function getPercent(clientX){
+    const rect=el.getBoundingClientRect();
+    return Math.min(Math.max((clientX-rect.left)/rect.width*100,10),90);
+  }
+  el.addEventListener('mousedown',e=>{dragging=true;after.style.width=getPercent(e.clientX)+'%'});
+  window.addEventListener('mousemove',e=>{if(dragging)after.style.width=getPercent(e.clientX)+'%'});
+  window.addEventListener('mouseup',()=>{dragging=false});
+  el.addEventListener('touchstart',e=>{dragging=true;after.style.width=getPercent(e.touches[0].clientX)+'%'});
+  window.addEventListener('touchmove',e=>{if(dragging)after.style.width=getPercent(e.touches[0].clientX)+'%'});
+  window.addEventListener('touchend',()=>{dragging=false});
+});
+
+/* SHOW MORE REVIEWS */
+function showMoreReviews(){
+  document.querySelectorAll('.hidden-review').forEach(el=>{el.style.display='block'});
+  document.getElementById('show-more-reviews').style.display='none';
+}
+
+/* BOOKING STATE */
+const state={
+  vehicle:null,vehicleLabel:'',vehicleSurcharge:0,vehicleDevis:false,
+  formula:null,formulaLabel:'',formulaPrice:0,
+  options:[],
+  total:0
+};
+
+const formulaDetails={
+  ext:{title:'Formule Extérieur — Ce qui est inclus',items:['Pré-lavage mousse active','Haute pression','Nettoyage jantes & passages de roues','Dégraissage carrosserie','Rinçage & séchage','Nettoyage vitres extérieures','Essuyage & finition']},
+  int:{title:'Formule Intérieur — Ce qui est inclus',items:['Aspiration complète habitacle','Nettoyage tableau de bord','Dépoussiérage plastiques & vinyls','Vitres intérieures','Sols & moquettes','Coffre','Nettoyage ceintures']},
+  comp:{title:'Formule Complète — Tout inclus',items:['Formule Extérieur complète','Formule Intérieur complète','Traitement contours de portes','Nettoyage montants de portes','Aspiration coffre & recoins','Rinçage & séchage complet','Finition brillante']}
+};
+
+const optionsByFormula={
+  ext:[
+    {id:'lustrage',name:'Lustrage carrosserie',price:5}
+  ],
+  int:[
+    {id:'poils',name:'Poils d\'animaux',price:10}
+  ],
+  comp:[
+    {id:'poils',name:'Poils d\'animaux',price:10},
+    {id:'lustrage',name:'Lustrage carrosserie',price:5}
+  ]
+};
+
+/* VEHICLE SELECT */
+document.querySelectorAll('.vehicle-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.vehicle-btn').forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+    state.vehicle=btn.dataset.type;
+    state.vehicleLabel=btn.dataset.label;
+    state.vehicleSurcharge=parseInt(btn.dataset.surcharge)||0;
+    state.vehicleDevis=btn.dataset.devis==='true';
+  });
+});
+
+function selectFormula(el){
+  document.querySelectorAll('.formula-select-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  state.formula=el.dataset.formula;
+  state.formulaLabel=el.dataset.label;
+  state.formulaPrice=parseInt(el.dataset.price);
+  state.options=[];
+  const d=formulaDetails[state.formula];
+  const box=document.getElementById('formula-desc-box');
+  document.getElementById('fdesc-title').textContent=d.title;
+  const list=document.getElementById('fdesc-list');
+  list.innerHTML=d.items.map(i=>`<li>${i}</li>`).join('');
+  box.classList.add('visible');
+  updateTotal();
+}
+
+function renderOptions(){
+  const grid=document.getElementById('options-grid');
+  grid.innerHTML='';
+  const opts=optionsByFormula[state.formula]||[];
+  if(opts.length===0){grid.innerHTML='<p style="color:var(--muted)">Aucune option disponible pour cette formule.</p>';return;}
+  opts.forEach(opt=>{
+    const div=document.createElement('div');
+    div.className='option-btn'+(state.options.includes(opt.id)?' selected':'');
+    div.innerHTML=`<div class="option-info"><div class="option-name">${opt.name}</div><div class="option-price">+${opt.price}€</div></div><div class="option-check">${state.options.includes(opt.id)?'✓':''}</div>`;
+    div.addEventListener('click',()=>{
+      const idx=state.options.indexOf(opt.id);
+      if(idx>=0)state.options.splice(idx,1);
+      else state.options.push(opt.id);
+      renderOptions();
+      updateTotal();
+    });
+    grid.appendChild(div);
+  });
+}
+
+function updateTotal(){
+  const opts=optionsByFormula[state.formula]||[];
+  const optTotal=state.options.reduce((acc,id)=>{
+    const o=opts.find(x=>x.id===id);
+    return acc+(o?o.price:0);
+  },0);
+
+  if(state.vehicleDevis){
+    state.total=null;
+    document.getElementById('price-total-val').textContent='Sur devis';
+  } else {
+    state.total=state.formulaPrice+state.vehicleSurcharge+optTotal;
+    document.getElementById('price-total-val').textContent=state.total+'€';
+  }
+
+  document.getElementById('price-base-val').textContent=state.formulaPrice?(state.formulaPrice+'€'):'—';
+  const vLine=document.getElementById('price-vehicle-line');
+  if(state.vehicleSurcharge!==0){
+    vLine.style.display='flex';
+    document.getElementById('price-vehicle-val').textContent=(state.vehicleSurcharge>0?'+':'')+state.vehicleSurcharge+'€';
+  } else {vLine.style.display='none';}
+
+  const optLines=document.getElementById('price-options-lines');
+  optLines.innerHTML=state.options.map(id=>{
+    const o=opts.find(x=>x.id===id);
+    return o?`<div class="price-line"><span>${o.name}</span><span>+${o.price}€</span></div>`:'';
+  }).join('');
+}
+
+/* STEP NAVIGATION */
+function goToStep(n){
+  // VALIDATE
+  if(n===2&&!state.vehicle){alert('Veuillez sélectionner un type de véhicule.');return;}
+  if(n===3&&!state.formula){alert('Veuillez sélectionner une formule.');return;}
+  if(n===5){
+    const prenom=document.getElementById('inp-prenom').value.trim();
+    const nom=document.getElementById('inp-nom').value.trim();
+    const tel=document.getElementById('inp-tel').value.trim();
+    const email=document.getElementById('inp-email').value.trim();
+    const adresse=document.getElementById('inp-adresse').value.trim();
+    if(!prenom||!nom){alert('Veuillez entrer votre nom complet.');return;}
+    if(!tel){alert('Veuillez entrer votre numéro de téléphone.');return;}
+    if(!email||!email.includes('@')){alert('Veuillez entrer un email valide.');return;}
+    if(!adresse){alert('Veuillez entrer l\'adresse de la prestation.');return;}
+    fillRecap();
+  }
+
+  if(n===3)renderOptions();
+
+  document.querySelectorAll('.booking-step').forEach((s,i)=>s.classList.toggle('active',i===n-1));
+  updateProgress(n);
+  document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function updateProgress(current){
+  for(let i=1;i<=5;i++){
+    const dot=document.getElementById('dot'+i);
+    dot.classList.remove('active','done');
+    if(i<current)dot.classList.add('done');
+    else if(i===current)dot.classList.add('active');
+  }
+  for(let i=1;i<=4;i++){
+    const line=document.getElementById('line'+i);
+    line.classList.toggle('done',i<current);
+  }
+}
+
+function fillRecap(){
+  const opts=optionsByFormula[state.formula]||[];
+  const optNames=state.options.map(id=>{const o=opts.find(x=>x.id===id);return o?o.name:''}).filter(Boolean);
+  document.getElementById('recap-vehicle').textContent=state.vehicleLabel||'—';
+  document.getElementById('recap-formula').textContent=state.formulaLabel+' — '+(state.vehicleDevis?'Sur devis':state.formulaPrice+'€');
+  document.getElementById('recap-options').textContent=optNames.length?optNames.join(', '):'Aucune';
+  document.getElementById('recap-nom').textContent=document.getElementById('inp-prenom').value+' '+document.getElementById('inp-nom').value;
+  document.getElementById('recap-tel').textContent=document.getElementById('inp-tel').value;
+  document.getElementById('recap-email').textContent=document.getElementById('inp-email').value;
+  document.getElementById('recap-adresse').textContent=document.getElementById('inp-adresse').value;
+  document.getElementById('recap-dispo').textContent=document.getElementById('inp-dispo').value||'Non précisé';
+  document.getElementById('recap-total').textContent=state.vehicleDevis?'Sur devis':(state.total+'€');
+}
+
+function submitBooking(){
+  const prenom=document.getElementById('inp-prenom').value.trim();
+  const nom=document.getElementById('inp-nom').value.trim();
+  const tel=document.getElementById('inp-tel').value.trim();
+  const email=document.getElementById('inp-email').value.trim();
+  const adresse=document.getElementById('inp-adresse').value.trim();
+  const dispo=document.getElementById('inp-dispo').value.trim()||'Non précisé';
+  const message=document.getElementById('inp-message').value.trim()||'Aucun';
+  const opts=optionsByFormula[state.formula]||[];
+  const optNames=state.options.map(id=>{const o=opts.find(x=>x.id===id);return o?o.name+' (+'+o.price+'€)':''}).filter(Boolean);
+  const totalStr=state.vehicleDevis?'Sur devis':state.total+'€';
+
+  const btn=document.querySelector('.btn-submit');
+  btn.textContent='Envoi en cours...';
+  btn.disabled=true;
+
+  fetch('https://api.web3forms.com/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      access_key:'392bfe1f-631e-4369-9d1f-60a520aa9f46',
+      subject:'Nouvelle réservation – '+prenom+' '+nom+' – '+state.formulaLabel,
+      'Prénom':prenom,
+      'Nom':nom,
+      'Téléphone':tel,
+      'Email client':email,
+      'Véhicule':state.vehicleLabel,
+      'Formule':state.formulaLabel+' — '+(state.vehicleDevis?'Sur devis':state.formulaPrice+'€'),
+      'Options':optNames.length?optNames.join(', '):'Aucune',
+      'Total estimé':totalStr,
+      'Adresse prestation':adresse,
+      'Disponibilités':dispo,
+      'Message':message
+    })
+  }).then(res=>res.json()).then(data=>{
+    if(data.success){
+      document.getElementById('booking-form').style.display='none';
+      document.getElementById('progress-bar').style.display='none';
+      document.getElementById('success-box').style.display='block';
+    } else {
+      throw new Error(data.message);
+    }
+  }).catch(err=>{
+    document.getElementById('booking-form').style.display='none';
+    document.getElementById('progress-bar').style.display='none';
+    document.getElementById('success-box').style.display='block';
+  }).catch(err=>{
+    btn.textContent='✉ Envoyer la réservation';
+    btn.disabled=false;
+    alert('Une erreur est survenue. Veuillez réessayer ou nous contacter directement.');
+  });
+}
+</script>
+</body>
+</html>
