@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://caisseasavon.com/sitemap.xml
+
+# Bloquer l'ancienne URL GitHub Pages
+User-agent: *
+Disallow: /lacaisseasavon/
