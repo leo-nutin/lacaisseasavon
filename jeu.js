@@ -33,17 +33,15 @@
     '.lg-body{max-height:calc(100vh - 28px);max-height:calc(100dvh - 28px);overflow-y:auto;overflow-x:hidden;padding:34px 20px 22px;border-radius:22px;-webkit-overflow-scrolling:touch}',
     '.lg-close{position:absolute;top:-10px;right:-6px;width:44px;height:44px;border-radius:50%;border:2px solid #fff;background:#d32020;color:#fff;font-size:1.35rem;font-weight:700;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(211,32,32,.6);z-index:5;padding:0}',
     '.lg-close:hover{background:#f03a3a}',
-    '.lg-close:focus-visible,.lg-btn:focus-visible,.lg-link:focus-visible{outline:3px solid #fff;outline-offset:2px}',
-    '.lg-kicker{font-size:.78rem;letter-spacing:4px;text-transform:uppercase;color:#2adaff;margin:0 0 .6rem}',
+    '.lg-card:focus{outline:none}',
+    '.lg-close:focus-visible,.lg-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}',
     '.lg-title{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:clamp(1.9rem,7vw,2.6rem);line-height:1.05;letter-spacing:1px;margin:0 0 .6rem;color:#fff}',
     '.lg-text{font-size:1rem;line-height:1.6;color:#d4e0f4;margin:0 0 1rem}',
-    '.lg-small{font-size:.82rem;color:#b8c8e0;margin:.8rem 0 0}',
     '.lg-btn{font-family:inherit;font-size:.92rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:50px;padding:14px 26px;cursor:pointer;border:2px solid transparent;transition:all .25s}',
     '.lg-primary{background:#1a6fff;color:#fff}',
     '.lg-primary:hover{background:#00a8e0;box-shadow:0 0 26px rgba(26,111,255,.55)}',
     '.lg-ghost{background:transparent;color:#d4e0f4;border-color:rgba(160,190,230,.55)}',
     '.lg-ghost:hover{border-color:#fff;color:#fff}',
-    '.lg-link{background:none;border:none;color:#9fdcff;text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer;margin-top:.7rem}',
     '.lg-glass{position:relative;width:100%;max-width:460px;margin:12px auto 0;aspect-ratio:3/2;border-radius:14px;padding:10px;background:linear-gradient(145deg,#3b4b6d,#1b2540);box-shadow:inset 0 0 0 2px rgba(255,255,255,.14),0 8px 26px rgba(0,0,0,.5);box-sizing:border-box}',
     '.lg-pane{position:relative;width:100%;height:100%;border-radius:7px;overflow:hidden;background:linear-gradient(135deg,#dff3ff 0%,#a9d8ff 55%,#cdeaff 100%)}',
     '.lg-pane:before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(115deg,rgba(255,255,255,.55) 0 11%,transparent 11% 19%,rgba(255,255,255,.3) 19% 23%,transparent 23%);pointer-events:none}',
@@ -80,16 +78,9 @@
     '<div class="lg-card">' +
       '<button type="button" class="lg-close" aria-label="Fermer la fenêtre">✕</button>' +
       '<div class="lg-body">' +
-        '<div id="lg-intro">' +
-          '<p class="lg-kicker">🎁 Offre de bienvenue</p>' +
-          '<h2 class="lg-title" id="lg-title">Découvrez quelle réduction vous gagnez</h2>' +
-          '<p class="lg-text">Une vitre recouverte de mousse cache votre surprise. Nettoyez-la au jet haute pression pour la révéler !</p>' +
-          '<button type="button" class="lg-btn lg-primary" id="lg-start">Jouer maintenant</button>' +
-          '<p class="lg-small">Jeu gratuit · sans inscription</p>' +
-        '</div>' +
-        '<div id="lg-game" hidden>' +
-          '<h2 class="lg-title" id="lg-gtitle" aria-live="polite">Nettoyez la vitre !</h2>' +
-          '<p class="lg-text" id="lg-hint">Maintenez le clic et glissez sur la mousse pour la retirer. Sur mobile, glissez simplement le doigt.</p>' +
+        '<div id="lg-game">' +
+          '<h2 class="lg-title" id="lg-gtitle" aria-live="polite">Découvrez votre remise derrière la mousse</h2>' +
+          '<p class="lg-text" id="lg-hint">Maintenez le clic et glissez sur la mousse pour la retirer.</p>' +
           '<div class="lg-glass" id="lg-glass">' +
             '<div class="lg-pane" id="lg-pane">' +
               '<div class="lg-prize"><div class="lg-prize-big">-10%</div><div class="lg-prize-sub">sur votre première prestation</div></div>' +
@@ -99,7 +90,6 @@
             '<div class="lg-gun" id="lg-gun" aria-hidden="true">' + GUN_SVG + '</div>' +
           '</div>' +
           '<div class="lg-progress" id="lg-progress" aria-hidden="true"><div class="lg-bar"><span id="lg-barfill"></span></div><span id="lg-pct">0 % nettoyé</span></div>' +
-          '<button type="button" class="lg-link" id="lg-skip" hidden>Je n\'arrive pas à jouer : révéler la réduction</button>' +
           '<div id="lg-result" hidden>' +
             '<p class="lg-text">Utilisable sur la formule de votre choix. La remise s\'applique à la formule, pas aux options.</p>' +
             '<p class="lg-confirm" id="lg-confirm" role="alert" hidden></p>' +
@@ -143,7 +133,7 @@
 
     var ov = document.createElement('div');
     ov.id = 'lcas-game'; ov.className = 'lg-overlay';
-    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-labelledby', 'lg-title');
+    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-labelledby', 'lg-gtitle');
     ov.innerHTML = HTML;
     document.body.appendChild(ov);
     var prevOverflow = document.body.style.overflow;
@@ -154,7 +144,7 @@
     var cv = $('lg-foam'), fx = $('lg-fx'), glass = $('lg-glass'), gun = $('lg-gun');
     var ctx = cv.getContext('2d'), fctx = fx.getContext('2d');
     var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    var down = false, won = false, last = null, chk = null, raf = null, skipTimer = null, confirming = false;
+    var down = false, won = false, last = null, chk = null, raf = null, confirming = false;
     var parts = [];
 
     paintFoam(ctx);
@@ -245,14 +235,13 @@
       if (won) return;
       won = true; down = false;
       if (chk) { clearTimeout(chk); chk = null; }
-      if (skipTimer) { clearTimeout(skipTimer); skipTimer = null; }
       fctx.clearRect(0, 0, W, H); parts.length = 0;
       gun.style.display = 'none';
       cv.style.opacity = '0';
       setTimeout(function () { if (cv) { cv.style.display = 'none'; fx.style.display = 'none'; } }, 950);
       $('lg-pane').classList.add('lg-won');
       $('lg-gtitle').textContent = 'Bravo ! Vous gagnez -10 % 🎉';
-      $('lg-hint').hidden = true; $('lg-progress').hidden = true; $('lg-skip').hidden = true;
+      $('lg-hint').hidden = true; $('lg-progress').hidden = true;
       $('lg-result').hidden = false;
       try { $('lg-take').focus(); } catch (err) {}
     }
@@ -260,7 +249,6 @@
     function destroy(markSeen) {
       if (markSeen) lsSet(KEY_SEEN, '1');
       if (chk) clearTimeout(chk);
-      if (skipTimer) clearTimeout(skipTimer);
       if (raf) cancelAnimationFrame(raf);
       won = true;
       document.removeEventListener('keydown', onKey, true);
@@ -285,12 +273,6 @@
     // croix rouge : ferme tout, immédiatement, à tout moment
     ov.querySelector('.lg-close').addEventListener('click', function () { destroy(true); });
 
-    $('lg-start').addEventListener('click', function () {
-      $('lg-intro').hidden = true; $('lg-game').hidden = false;
-      skipTimer = setTimeout(function () { if (!won) $('lg-skip').hidden = false; }, 8000);
-    });
-    $('lg-skip').addEventListener('click', win);
-
     $('lg-take').addEventListener('click', function () {
       lsSet(KEY_DISC, 'active');
       destroy(false);
@@ -310,6 +292,7 @@
       }
     });
 
-    try { $('lg-start').focus(); } catch (err) {}
+    var card = ov.querySelector('.lg-card'); card.tabIndex = -1;
+    try { card.focus(); } catch (err) {}
   }
 })();
